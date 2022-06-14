@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ConVar;
+using Newtonsoft.Json;
 using Rust;
 using UnityEngine;
 using SplashUtilities;
@@ -11,31 +12,45 @@ namespace SplashStats
     {
         public string AttackerName;
         public ulong AttackerID;
+        public string AttackerVehicle;
+        public bool AttackerDriving;
         public string VictimName;
         public ulong VictimID;
+        public bool VictimSleeping;
+        public string VictimVehicle;
+        public bool VictimDriving;
         public string BoneName;
         public int Distance;
 
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public HitArea BoneArea;
 
         public float ProjectileDistance;
         public string ProjectileName;
         public string WeaponName;
 
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public DamageType DamageType;
         
+        // Stuff plugins or other Harmony mods can use, but shouldn't be serialized. 
+        [JsonIgnore] public HitInfo hitInfo;
+        [JsonIgnore] public BasePlayer VictimPlayer;
+
+        public bool IsSelfInflicted() => AttackerID == 0 && ProjectileName == null && WeaponName == null;
+    
         public static T FromHitInfo<T>(BasePlayer victim, HitInfo info) where T : BaseKillData, new()
         {
             var data = new T()
             {
+                VictimPlayer = victim,
+                hitInfo = info,
                 BoneName = info.boneName,
                 BoneArea = info.boneArea,
                 ProjectileDistance = info.ProjectileDistance,
                 ProjectileName = info.ProjectilePrefab?.name,
                 WeaponName = info.WeaponPrefab?.ShortPrefabName,
-                DamageType =  info.damageTypes.GetMajorityDamageType()
+                DamageType =  info.damageTypes.GetMajorityDamageType(),
+                VictimSleeping = victim.IsSleeping()
             };
 
             if (victim.IsNpc)
@@ -47,6 +62,13 @@ namespace SplashStats
             {
                 data.VictimName = victim.displayName;
                 data.VictimID = victim.userID;
+
+                var vehicle = victim.GetMounted()?.VehicleParent();
+                if (vehicle != null)
+                {
+                    data.VictimVehicle = vehicle.ShortPrefabName;
+                    data.VictimDriving = victim == vehicle.GetDriver();
+                }
             }
 
             if (info.Initiator != null && victim != null)
@@ -77,6 +99,13 @@ namespace SplashStats
                 }
                 else
                 {
+                    var vehicle = info.InitiatorPlayer.GetMounted()?.VehicleParent();
+                    if (vehicle != null)
+                    {
+                        data.AttackerVehicle = vehicle.ShortPrefabName;
+                        data.AttackerDriving = info.InitiatorPlayer == vehicle.GetDriver();
+                    }
+
                     data.AttackerName = info.InitiatorPlayer.displayName;
                     data.AttackerID = info.InitiatorPlayer.userID;
                 }
@@ -95,10 +124,17 @@ namespace SplashStats
         {
             return new PlayerKillData
             {
+                hitInfo = data.hitInfo,
+                VictimPlayer = data.VictimPlayer,
                 AttackerName = data.AttackerName,
                 AttackerID = data.AttackerID,
                 VictimName = data.VictimName,
                 VictimID = data.VictimID,
+                VictimSleeping = data.VictimSleeping,
+                VictimDriving = data.VictimDriving,
+                VictimVehicle = data.VictimVehicle,
+                AttackerDriving = data.AttackerDriving,
+                AttackerVehicle = data.AttackerVehicle,
                 BoneName = data.BoneName,
                 BoneArea = data.BoneArea,
                 ProjectileDistance = data.ProjectileDistance,
