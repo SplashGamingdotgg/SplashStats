@@ -33,17 +33,22 @@ namespace SplashStats
         public DamageType DamageType;
         
         // Stuff plugins or other Harmony mods can use, but shouldn't be serialized. 
-        [JsonIgnore] public HitInfo hitInfo;
-        [JsonIgnore] public BasePlayer VictimPlayer;
-
+        private HitInfo _hitInfo;
+        private BasePlayer _victimPlayer;
+        
+        public void SetVictimPlayer(BasePlayer victimPlayer) => _victimPlayer = victimPlayer;
+        public BasePlayer GetVictimPlayer() => _victimPlayer;
+        public void SetHitInfo(HitInfo info) => _hitInfo = info;
+        public HitInfo GetHitInfo() => _hitInfo;
+        
         public bool IsSelfInflicted() => AttackerID == 0 && ProjectileName == null && WeaponName == null;
     
         public static T FromHitInfo<T>(BasePlayer victim, HitInfo info) where T : BaseKillData, new()
         {
             var data = new T()
             {
-                VictimPlayer = victim,
-                hitInfo = info,
+                _victimPlayer = victim,
+                _hitInfo = info,
                 BoneName = info.boneName,
                 BoneArea = info.boneArea,
                 ProjectileDistance = info.ProjectileDistance,
@@ -122,10 +127,8 @@ namespace SplashStats
 
         public static PlayerKillData FromWoundData(WoundData data)
         {
-            return new PlayerKillData
+            var pk = new PlayerKillData
             {
-                hitInfo = data.hitInfo,
-                VictimPlayer = data.VictimPlayer,
                 AttackerName = data.AttackerName,
                 AttackerID = data.AttackerID,
                 VictimName = data.VictimName,
@@ -142,6 +145,10 @@ namespace SplashStats
                 WeaponName = data.WeaponName,
                 Distance = data.Distance
             };
+            pk.SetHitInfo(data.GetHitInfo());
+            pk.SetVictimPlayer(data.GetVictimPlayer());
+
+            return pk;
         }
     }
 
