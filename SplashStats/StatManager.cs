@@ -214,8 +214,16 @@ namespace SplashStats
                 return;
             }
 
-            killdata = info == null ? PlayerKillData.FromWoundData(wounddata) : BaseKillData.FromHitInfo<PlayerKillData>(victim, info);
-
+            if (wounddata != null && info != null && info.damageTypes.GetMajorityDamageType() == DamageType.Suicide)
+            {
+                killdata = PlayerKillData.FromWoundData(wounddata);
+            }
+            else
+            {
+                killdata = info == null ? PlayerKillData.FromWoundData(wounddata) : BaseKillData.FromHitInfo<PlayerKillData>(victim, info);
+                
+            }
+            
             if (wounddata != null)
             {
                 killdata.AssistName = wounddata.AttackerName;
