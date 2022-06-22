@@ -35,26 +35,20 @@
         <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, PublicKeyToken=null">
           <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\0Harmony.dll</HintPath>
         </Reference>
-        <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\Assembly-CSharp.dll</HintPath>
+        <Reference Include="Assembly-CSharp">
+          <HintPath>..\..\..\OneDrive\Desktop\Assembly-CSharp.dll</HintPath>
         </Reference>
-        <Reference Include="Facepunch.Unity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\Facepunch.Unity.dll</HintPath>
+        <Reference Include="Facepunch.Unity">
+          <HintPath>..\..\..\OneDrive\Desktop\Facepunch.Unity.dll</HintPath>
         </Reference>
-        <Reference Include="Facepunch.UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\Facepunch.UnityEngine.dll</HintPath>
+        <Reference Include="Facepunch.UnityEngine">
+          <HintPath>..\..\..\OneDrive\Desktop\Facepunch.UnityEngine.dll</HintPath>
         </Reference>
         <Reference Include="Newtonsoft.Json">
           <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\Newtonsoft.Json.dll</HintPath>
         </Reference>
         <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null">
           <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\Newtonsoft.Json.dll</HintPath>
-        </Reference>
-        <Reference Include="Oxide.Core, Version=2.0.4006.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\Oxide.Core.dll</HintPath>
-        </Reference>
-        <Reference Include="Oxide.CSharp, Version=2.0.4046.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\Oxide.CSharp.dll</HintPath>
         </Reference>
         <Reference Include="Rust.Harmony, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
           <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\Rust.Harmony.dll</HintPath>
