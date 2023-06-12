@@ -16,6 +16,7 @@ namespace SplashStats.Patches
             catch (Exception e)
             {
                 Debug.LogWarning($"Exception running BasePlayer.RecoverFromWounded hook: {e}");
+                Debug.LogException(e);
             }
         }       
     }

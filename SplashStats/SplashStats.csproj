@@ -33,38 +33,35 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\0Harmony.dll</HintPath>
+          <HintPath>D:\rustservers\release-nooxide\RustDedicated_Data\Managed\0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="0SplashUtilities">
+          <HintPath>D:\rustservers\HarmonyBuilds\0SplashUtilities.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp">
-          <HintPath>..\..\..\OneDrive\Desktop\Assembly-CSharp.dll</HintPath>
-        </Reference>
-        <Reference Include="Facepunch.Unity">
-          <HintPath>..\..\..\OneDrive\Desktop\Facepunch.Unity.dll</HintPath>
+          <HintPath>D:\rustservers\release-nooxide\RustDedicated_Data\Managed\Assembly-CSharp.dll</HintPath>
         </Reference>
         <Reference Include="Facepunch.UnityEngine">
-          <HintPath>..\..\..\OneDrive\Desktop\Facepunch.UnityEngine.dll</HintPath>
+          <HintPath>D:\rustservers\release-nooxide\RustDedicated_Data\Managed\Facepunch.UnityEngine.dll</HintPath>
         </Reference>
         <Reference Include="Newtonsoft.Json">
-          <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\Newtonsoft.Json.dll</HintPath>
+          <HintPath>D:\rustservers\release-nooxide\RustDedicated_Data\Managed\Newtonsoft.Json.dll</HintPath>
         </Reference>
         <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\Newtonsoft.Json.dll</HintPath>
+          <HintPath>D:\rustservers\release-nooxide\RustDedicated_Data\Managed\Newtonsoft.Json.dll</HintPath>
         </Reference>
         <Reference Include="Rust.Harmony, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\Rust.Harmony.dll</HintPath>
-        </Reference>
-        <Reference Include="SplashUtilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>..\..\SplashUtilities\SplashUtilities\bin\Debug\SplashUtilities.dll</HintPath>
+          <HintPath>D:\rustservers\release-nooxide\RustDedicated_Data\Managed\Rust.Harmony.dll</HintPath>
         </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
         <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\UnityEngine.dll</HintPath>
+          <HintPath>D:\rustservers\release-nooxide\RustDedicated_Data\Managed\UnityEngine.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\rustservers\release\RustDedicated_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+          <HintPath>D:\rustservers\release-nooxide\RustDedicated_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>

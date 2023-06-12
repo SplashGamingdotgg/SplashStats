@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using ConVar;
 using Newtonsoft.Json;
 using Rust;
 using UnityEngine;
@@ -163,11 +162,13 @@ namespace SplashStats
 
         public static void RegisterKillCallback(Action<BasePlayer, PlayerKillData> callback)
         {
+            Debug.Log($"Registering kill callback: {callback.Method.Name}");
             KillCallbacks.Add(callback);
         }
 
         public static void UnregisterKillCallback(Action<BasePlayer, PlayerKillData> callback)
         {
+            Debug.Log($"Unregistered kill callback {callback.Method.Name}");
             KillCallbacks.Remove(callback);
         }
         
@@ -190,10 +191,7 @@ namespace SplashStats
                 return;
             }
 
-            if (WoundData.ContainsKey(victim.userID))
-            {
-                WoundData.Remove(victim.userID);
-            }
+            WoundData.Remove(victim.userID);
         }
 
         public static void ProcessOnKilled(BasePlayer victim, HitInfo info)
@@ -221,13 +219,14 @@ namespace SplashStats
             else
             {
                 killdata = info == null ? PlayerKillData.FromWoundData(wounddata) : BaseKillData.FromHitInfo<PlayerKillData>(victim, info);
-                
             }
             
             if (wounddata != null)
             {
                 killdata.AssistName = wounddata.AttackerName;
                 killdata.AssistID = wounddata.AttackerID;
+
+                WoundData.Remove(victim.userID);
             }
             
             RustUtils.BroadcastCustom("PlayerKill", killdata);

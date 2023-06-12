@@ -16,6 +16,7 @@ namespace SplashStats.Patches
             catch (Exception e)
             {
                 Debug.LogWarning($"Exception running BasePlayer.OnKilled hook: {e}");
+                Debug.LogException(e);
             }
         }
     }
