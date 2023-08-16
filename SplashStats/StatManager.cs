@@ -203,7 +203,6 @@ namespace SplashStats
             }
 
             PlayerKillData killdata;
-            
             WoundData.TryGetValue(victim.userID, out var wounddata);
 
             if (info == null && wounddata == null)
